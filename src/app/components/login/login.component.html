@@ -1,0 +1,31 @@
+<div class="login-wrapper">
+  <div class="login-header">
+    Logowanie
+  </div>
+  <div class="login-form">
+    <form class="example-form" [formGroup]="loginForm">
+      <mat-form-field class="example-full-width">
+        <input matInput placeholder="Email..." formControlName="email">
+        <mat-error *ngIf="loginForm.invalid.valueOf('email')">
+          Email jest wymagany
+        </mat-error>
+      </mat-form-field>
+      <mat-form-field class="example-full-width">
+        <input matInput placeholder="Hasło..." formControlName="password" type="password">
+        <mat-error *ngIf="loginForm.invalid.valueOf('password')">
+          Wpisz hasło podane przy rejestracji
+        </mat-error>
+      </mat-form-field>
+      <button (click)="handlerLoginUser(loginForm.value)" mat-stroked-button
+        [disabled]="loginForm.invalid">Zatwierdź</button>
+    </form>
+  </div>
+  <div class="login-form-summary" *ngIf="error !== ''">
+    <mat-error>
+      {{error}}
+    </mat-error>
+  </div>
+  <div class="login-redirect">
+    Nie masz konta? <span (click)="redirectToRegisterPage()">Zarejestruj się</span>
+  </div>
+</div>

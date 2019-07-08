@@ -1,0 +1,100 @@
+.tasklist-wrapper {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+
+  .tasklist-header {
+    margin-top: 2rem;
+    font-size: 30px;
+    cursor: default;
+    padding: 1rem;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    text-align: center;
+
+    span {
+      padding: 5px;
+    }
+
+    i {
+      margin-left: 20px;
+      cursor: pointer;
+
+      &:focus,
+      &:hover {
+        transform: scale(1.5);
+      }
+    }
+  }
+
+  .tasklist-form {
+    padding: 0.5rem;
+
+    .example-form {
+      min-width: 300px;
+      max-width: 500px;
+      width: 100%;
+      display: flex;
+      flex-direction: row;
+      align-items: center;
+
+      .example-full-width {
+        width: 100%;
+        padding: 10px;
+      }
+
+      i {
+        cursor: pointer;
+
+        &:hover,
+        &:focus {
+          transform: scale(1.5);
+        }
+      }
+    }
+  }
+
+  .tasklist-content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+    ul {
+      list-style-type: none;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      padding: 5px;
+
+      li {
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        padding: 5px;
+
+        span {
+          i {
+            margin-left: 10px;
+            cursor: pointer;
+
+            &:hover, &:focus {
+              transform: scale(1.5);
+            }
+          }
+        }
+      }
+    }
+  }
+}
+
+@media (max-width: 760px) {
+
+  .tasklist-wrapper {
+
+    .tasklist-header {
+      flex-direction: column;
+      font-size: 25px;
+    }
+  }
+}

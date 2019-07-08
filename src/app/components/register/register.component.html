@@ -1,0 +1,25 @@
+<div class="register-wrapper">
+  <div class="register-header">
+    Rejestracja
+  </div>
+  <div class="register-form">
+    <form class="example-form" [formGroup]="registerForm">
+      <mat-form-field class="example-full-width">
+        <input matInput placeholder="Email..." formControlName="email">
+        <mat-error *ngIf="registerForm.invalid.valueOf('email')">
+          Email jest wymagany
+        </mat-error>
+      </mat-form-field>
+      <mat-form-field class="example-full-width">
+        <input matInput placeholder="Hasło..." formControlName="password" type="password">
+        <mat-error *ngIf="registerForm.invalid.valueOf('password')">
+          Hasło musi posiadać minimum 6 znaków
+        </mat-error>
+      </mat-form-field>
+      <button (click)="handlerRegisterUser(registerForm.value)" mat-stroked-button [disabled]="registerForm.invalid">Zatwierdź</button>
+    </form>
+  </div>
+  <div class="register-redirect">
+    Masz konto? <span (click)="redirectToLoginPage()"> Zaloguj się</span>
+  </div>
+</div>

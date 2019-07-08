@@ -1,0 +1,43 @@
+<div class="tasklist-wrapper">
+  <div class="tasklist-header" *ngIf="authService.user">
+    <span>Panel użytkownika {{authService.user.email}}</span>
+    <i matTooltip="Wyloguj" class="material-icons" (click)="handlerLogoutUser()">exit_to_app</i>
+  </div>
+  <div class="tasklist-form">
+    <form class="example-form" [formGroup]="taskForm">
+      <mat-form-field class="example-full-width">
+        <input matInput placeholder="Zadanie..." formControlName="task">
+        <mat-error *ngIf="taskForm.invalid.valueOf('email')">
+          Zadanie nie może być puste
+        </mat-error>
+      </mat-form-field>
+      <i matTooltip="Dodaj zadanie" class="material-icons" (click)="handlerAddNewTask(taskForm.value)">add_circle</i>
+    </form>
+  </div>
+  <div class="tasklist-content">
+    <mat-tab-group class="tasklist-content-list">
+      <mat-tab label="Do zrobiena" class="tasklist-content-list-tab">
+        <ul>
+          <ng-container *ngFor="let task of tasksService.tasks">
+            <li *ngIf="task.data().isDone === false">
+              {{task.data().name}}
+              <span matTooltip="Oznacz jako zrobione" (click)="handlerMakeTaskDone(task.data().name)"> <i class="material-icons">done</i></span>
+              <span matTooltip="Usuń zadanie" (click)="handlerDeleteTask(task)"><i class="material-icons">delete</i></span>
+            </li>
+          </ng-container>
+        </ul>
+      </mat-tab>
+      <mat-tab label="Zrobione">
+        <ul>
+          <ng-container *ngFor="let task of tasksService.tasks">
+            <li *ngIf="task.data().isDone === true">
+              {{task.data().name}}
+              <span matTooltip="Oznacz jako niezrobione" (click)="handlerMakeTaskUnDone(task.data().name)"><i class="material-icons">settings_backup_restore</i></span>
+              <span matTooltip="Usuń zadanie" (click)="handlerDeleteTask(task)"><i class="material-icons">delete</i></span>
+            </li>
+          </ng-container>
+        </ul>
+      </mat-tab>
+    </mat-tab-group>
+  </div>
+</div>
